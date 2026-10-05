@@ -17,7 +17,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  GHCR_OWNER: avatsav
+  GHCR_OWNER: rocknitive
   IMAGE_NAME: pi-kit-image
   KIT_NAME: pi-kit
 

@@ -7,26 +7,27 @@ Adds OpenAI support to the upstream Pi kit:
 - OpenAI API key via `OPENAI_API_KEY`
 - ChatGPT Plus/Pro OAuth for Pi's `openai-codex` provider
 - Anthropic API key via `ANTHROPIC_API_KEY`
+- Pi, OpenSpec, and the stable Rust toolchain with `rustfmt` and `clippy`
 
 ## Quick start
 
 Allow this publisher once:
 
 ```bash
-sbx settings set kit.allowedSources '["docker.io/","ghcr.io/avatsav/"]'
+sbx settings set kit.allowedSources '["docker.io/","ghcr.io/rocknitive/"]'
 ```
 
 Run Pi for a project directory:
 
 ```bash
-sbx run ghcr.io/avatsav/pi-kit:latest ~/my-project
+sbx run ghcr.io/rocknitive/pi-kit:latest ~/my-project
 ```
 
 `sbx run` defaults the workspace to the current directory:
 
 ```bash
 cd ~/my-project
-sbx run ghcr.io/avatsav/pi-kit:latest
+sbx run ghcr.io/rocknitive/pi-kit:latest
 ```
 
 ## Authentication
@@ -51,6 +52,8 @@ echo "$ANTHROPIC_API_KEY" | sbx secret set anthropic
 
 Recreate the sandbox after changing credentials; sbx wires credential bindings at create time.
 
+Rebuild and recreate existing sandboxes after changing the image or kit; existing sandboxes keep their original image.
+
 Do not run `/login` inside the sandbox for managed credentials.
 
 ## Optional shell helper
@@ -59,7 +62,7 @@ Add to `~/.zshrc`:
 
 ```zsh
 sbx-pi() {
-  sbx run ghcr.io/avatsav/pi-kit:latest
+  sbx run ghcr.io/rocknitive/pi-kit:latest
 }
 ```
 
@@ -67,7 +70,7 @@ Add to `~/.config/fish/config.fish`:
 
 ```fish
 function sbx-pi
-    sbx run ghcr.io/avatsav/pi-kit:latest
+    sbx run ghcr.io/rocknitive/pi-kit:latest
 end
 ```
 

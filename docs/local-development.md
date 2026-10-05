@@ -5,11 +5,14 @@ Use this when changing the kit itself instead of using the published GHCR kit.
 ## Build and validate
 
 ```bash
-docker build -t ghcr.io/avatsav/pi-kit-image:latest .
+docker build --pull --no-cache -t ghcr.io/rocknitive/pi-kit-image:latest .
 sbx kit validate .
 ```
 
 The local image tag must match `sandbox.image` in `spec.yaml`.
+
+The build resolves the latest Pi and OpenSpec releases and installs stable Rust with `rustfmt` and `clippy`.
+Existing sandboxes must be stopped and recreated to use a rebuilt image.
 
 ## Run a local checkout
 
@@ -23,9 +26,9 @@ Or clone the kit to a stable path and run it from project directories:
 
 ```bash
 mkdir -p ~/.config/docker-sbx
-git clone git@github.com:avatsav/pi-kit.git ~/.config/docker-sbx/pi-kit
+git clone git@github.com:rocknitive/pi-kit.git ~/.config/docker-sbx/pi-kit
 cd ~/.config/docker-sbx/pi-kit
-docker build -t ghcr.io/avatsav/pi-kit-image:latest .
+docker build -t ghcr.io/rocknitive/pi-kit-image:latest .
 sbx kit validate .
 
 cd /path/to/project
@@ -38,13 +41,13 @@ If you want one shell command that can switch between the published kit and a lo
 
 ```zsh
 sbx-pi-dev() {
-  sbx run "${SBX_PI_KIT:-ghcr.io/avatsav/pi-kit:latest}"
+  sbx run "${SBX_PI_KIT:-ghcr.io/rocknitive/pi-kit:latest}"
 }
 ```
 
 ```fish
 function sbx-pi-dev
-    set -l kit "ghcr.io/avatsav/pi-kit:latest"
+    set -l kit "ghcr.io/rocknitive/pi-kit:latest"
     if set -q SBX_PI_KIT
         set kit "$SBX_PI_KIT"
     end

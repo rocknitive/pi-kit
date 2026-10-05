@@ -4,7 +4,7 @@ name: pi-kit
 displayName: Pi Kit
 description: Pi coding agent for Docker Sandboxes with OpenAI API-key and ChatGPT OAuth support
 sandbox:
-  image: ghcr.io/avatsav/pi-kit-image:latest
+  image: ghcr.io/rocknitive/pi-kit-image:latest
   entrypoint:
     - pi
 agentInstructions:
@@ -26,6 +26,13 @@ permissions:
       - registry.npmjs.org
       # pi install/update telemetry and update checks. Remove if you disable telemetry/update checks.
       - pi.dev
+      # Cargo sparse registry and crate downloads.
+      - crates.io
+      - index.crates.io
+      - static.crates.io
+      # Git dependencies used by Rust projects.
+      - github.com
+      - raw.githubusercontent.com
 credentials:
   - service: openai
     apiKey:
