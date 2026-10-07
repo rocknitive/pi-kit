@@ -11,6 +11,8 @@ RUN apt-get update && \
         ca-certificates \
         curl \
         fd-find \
+        libreoffice \
+        poppler-utils \
         pkg-config && \
     rm -rf /var/lib/apt/lists/* && \
     ln -sf "$(command -v fdfind)" /usr/local/bin/fd
@@ -30,15 +32,19 @@ RUN pi_version="$(node -p 'require("/tmp/pi-latest.json").version')" && \
     npm install -g \
         "@earendil-works/pi-coding-agent@${pi_version}" \
         "@fission-ai/openspec@${openspec_version}" && \
+    pi install npm:pi-docparser@4.0.0 && \
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | \
         sh -s -- -y --profile minimal --default-toolchain stable && \
     rustup component add clippy rustfmt && \
     pi --version && \
+    pi list | grep -F 'pi-docparser' && \
     openspec --version && \
     cargo --version && \
     rustc --version && \
     cargo clippy --version && \
-    rustfmt --version
+    rustfmt --version && \
+    pdftotext -v && \
+    libreoffice --version
 
 USER root
 RUN ln -sf "$(npm prefix -g)/bin/pi" /usr/local/bin/pi && \

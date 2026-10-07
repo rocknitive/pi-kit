@@ -8,6 +8,7 @@ Adds OpenAI support to the upstream Pi kit:
 - ChatGPT Plus/Pro OAuth for Pi's `openai-codex` provider
 - Anthropic API key via `ANTHROPIC_API_KEY`
 - Pi, OpenSpec, and the stable Rust toolchain with `rustfmt` and `clippy`
+- `pi-docparser`, `pdftotext`, and LibreOffice for document processing
 
 ## Quick start
 

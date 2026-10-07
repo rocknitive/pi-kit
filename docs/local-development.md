@@ -11,7 +11,8 @@ sbx kit validate .
 
 The local image tag must match `sandbox.image` in `spec.yaml`.
 
-The build resolves the latest Pi and OpenSpec releases and installs stable Rust with `rustfmt` and `clippy`.
+The build resolves the latest Pi and OpenSpec releases, installs `pi-docparser`,
+`pdftotext`, and LibreOffice, and installs stable Rust with `rustfmt` and `clippy`.
 Existing sandboxes must be stopped and recreated to use a rebuilt image.
 
 ## Run a local checkout
